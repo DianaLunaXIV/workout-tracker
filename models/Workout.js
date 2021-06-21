@@ -3,13 +3,8 @@ const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
     date: Date,
-    exercises: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Exercise"
-        }
-    ]
-});
+    exercises: Array
+}, { toJSON: { virtuals: true } }); //deploy virtual for summing up total workout duration
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-    date: Date,
+    day: Date,
     exercises: Array
 }, { toJSON: { virtuals: true }, toObject: { virtuals: true } }); //deploy virtual for summing up total workout duration
 

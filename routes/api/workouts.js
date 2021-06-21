@@ -11,7 +11,11 @@ router.get('/', async (req, res) => {
 })
 router.post('/', async (req, res) => {
     try {
-        const postResult = await db.Workout.create(req.body)
+        const newWorkout = {
+            day: new Date(),
+            exercises: []
+        }
+        const postResult = await db.Workout.create(newWorkout)
         res.status(200).json(postResult)
     } catch (err) {
         res.status(500).json(err)

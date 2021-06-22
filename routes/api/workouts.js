@@ -9,6 +9,17 @@ router.get('/', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+router.get('/range', async (req, res) => {
+    try {
+        const allWorkouts = await db.Workout.aggregate([{$sort: {day: -1}}, {$limit: 7}, {$addFields: {totalDuration: {$sum: '$exercises.duration'}}}])
+        res.status(200).json(allWorkouts)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+
 router.post('/', async (req, res) => {
     try {
         const newWorkout = {
